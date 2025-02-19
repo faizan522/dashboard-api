@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        /* Border Image */
+        .border-img {
+            width: 100%;
+            max-width: 1000px;
+            height: 1300px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: left;
+            position: absolute;
+        }
+
+/* Headings and Links */
+h1, h2, h3 {
+    color: #333;
+}
+h1 
+{
+    text-align: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+p {
+    font-size: 16px;
+}
+
+/* Responsive Table */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* API Response Box */
+pre {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    pre {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 5px;
+    }
+    .border-img
+    {
+        height: 1000px;
+    }
+}
+.line-x
+{
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+    </style>
+</head>
+<body>
+    <img src="border-logo.webp" alt="Border Logo" class="border-img">
+    <div class="container">
+        <h1>Payment API</h1>
+        <div class="line-x"></div>
+
+        <h2 style="padding-left: 20px; color: darkslateblue;">1. <a href="#" style="color: darkslateblue;">Payment API (JazzCash)</a></h2>
+
+        <p><strong>URL:</strong> <a href="#">https://{BASE_URL}/epay/jazzcash</a></p>
+        <p><strong>Type:</strong> POST</p>
+        <p><strong>Content Type:</strong> application/json</p>
+        <p><strong>Header:</strong> Authorization > Bearer {TOKEN}</p>
+
+        <h3>Request:</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Mandatory</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>merchantTransactionId</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Merchant’s system unique Id</td>
+                    </tr>
+                    <tr>
+                        <td>billRefNo</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Merchant’s unique bill id <br><em>(It can be same as merchantTransactionId)</em></td>
+                    </tr>
+                    <tr>
+                        <td>amount</td>
+                        <td>Yes</td>
+                        <td>Decimal</td>
+                        <td>Amount of transaction considers up to 4 decimal places</td>
+                    </tr>
+                    <tr>
+                        <td>consumerNo</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>User’s e-wallet no. <br><em>(Format 03xxxxxxxxx)</em></td>
+                    </tr>
+                    <tr>
+                        <td>payeeName</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>User’s name</td>
+                    </tr>
+                    <tr>
+                        <td>purchaseItem</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Item which is being sold</td>
+                    </tr>
+                    <tr>
+                        <td>payeeCNIC</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>User’s CNIC without dashes <br><em>(Format 422xxxxxxxxxx)</em></td>
+                    </tr>
+                    <tr>
+                        <td>payeeEmail</td>
+                        <td>No</td>
+                        <td>String</td>
+                        <td>User’s email address</td>
+                    </tr>
+                    <tr>
+                        <td>currency</td>
+                        <td>No</td>
+                        <td>String</td>
+                        <td>Default <strong>PKR</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Response:</h3>
+        <pre>
+{
+    "result": {
+        "transactionId": 1234
+    },
+    "responseCode": "100",
+    "responseMessage": "Transaction processed successfully",
+    "timeStamp": "2024-01-01T23:56:17.7968012+05:00"
+}
+        </pre>
+    </div>
+</body>
+</html>

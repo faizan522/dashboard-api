@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        /* Border Image */
+        .border-img {
+            width: 100%;
+            max-width: 900px;
+            height: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .lines {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            position: absolute;
+        }
+
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            margin: 15px 0;
+        }
+
+        .links {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+
+        h2, h3 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .response-box {
+            background: white;
+            border: 1px solid black;
+            padding: 15px;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        pre {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .lines {
+                padding: 15px;
+            }
+
+            p, th, td {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .links {
+                text-align: center;
+            }
+
+            .line {
+                height: 1px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            p, th, td {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .response-box {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Border Image -->
+    <img src="border-logo.webp" alt="Border Logo" class="border-img">
+    
+    <div class="lines">
+        <div class="line"></div>
+        <h2>URLs</h2>
+        <div class="line"></div>
+
+        <div class="links">
+            <h3>Auth: <a href="https://www.example.com/auth">Auth Link</a></h3>
+            <h3>API: <a href="https://www.example.com/api">API Link</a></h3>
+        </div>
+
+        <div class="line"></div>
+        <h2>Login API</h2>
+        <div class="line"></div>
+
+        <div class="container">
+            <p><strong>URL:</strong> <a href="#">https://{AUTH_BASE_URL}/token</a></p>
+            <p><strong>Type:</strong> POST</p>
+            <p><strong>Content Type:</strong> application/x-www-form-urlencoded</p>
+    
+            <h3>Request:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Mandatory</th>
+                        <th>Data type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>client_id</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Client id provided by ePay</td>
+                    </tr>
+                    <tr>
+                        <td>client_secret</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Client secret provided by ePay</td>
+                    </tr>
+                    <tr>
+                        <td>grant_type</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Fixed value <strong>client_credentials</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <h3>Response:</h3>
+            <div class="response-box">
+                <pre>
+{
+    "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjZRUhIVTNPODVGNjctRU1PTjZRT...",
+    "token_type": "Bearer",
+    "expires_in": 3599
+}
+                </pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
