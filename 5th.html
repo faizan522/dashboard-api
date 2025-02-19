@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        /* Border Image */
+        .border-img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: left;
+            position: absolute;
+        }
+
+        h2, h3, h4 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Table */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* API Response Box */
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            pre {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+
+            h3, h4 {
+                font-size: 16px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 5px;
+            }
+        }
+        .line-x
+            {
+                width: 100%;
+                height: 2px;
+                background-color: black;
+                text-align: center;
+            }
+        .container h1
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="border-logo.webp" alt="Border Logo" class="border-img">
+    <div class="container">
+
+        <h1>Callback API(ePay will consume this api)</h1>
+        <div class="line-x"></div>
+
+        <h2>3. <a href="#">Callback API</a></h2>
+
+        <p><strong>URL:</strong> <a href="#">https://{YOUR_BASE_URL}</a></p>
+        <p><strong>Type:</strong> POST</p>
+        <p><strong>Header:</strong> Application/JSON</p>
+
+        <h3>Request:</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Mandatory</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>merchantTransactionId</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Merchant’s system unique Id</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Transaction status</td>
+                    </tr>
+                    <tr>
+                        <td>transactionId</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>ePay transaction id</td>
+                    </tr>
+                    <tr>
+                        <td>purchaseItem</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Item which is being sold</td>
+                    </tr>
+                    <tr>
+                        <td>serviceType</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Type of the service used for transaction like EWallet</td>
+                    </tr>
+                    <tr>
+                        <td>service</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>The service used for transaction like JazzCash / EasyPaisa</td>
+                    </tr>
+                    <tr>
+                        <td>secureHash</td>
+                        <td>Yes</td>
+                        <td>String</td>
+                        <td>Secure hash which validates the authenticity of the request</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Response: (With 200 HTTP response)</h3>
+        <pre>
+{
+    "responseCode": "100"
+}
+        </pre>
+
+        <h4>4. <a href="#">Secure Hash Calculation</a></h4>
+        <p>For secure hash use HMAC-SHA256 hashing scheme. This scheme requires secretKey and plain text, which is going to be hashed. The resultant hash will be in <strong>hex format</strong>.</p>
+        <p>The secretKey will be shared by ePay, and the plain text for hashing scheme will be:</p>
+
+        <pre>
+var plainText = `${ServiceType}|${Service}|${MerchantTransactionId}|${TransactionId}|${Status}|${PurchaseItem}`;
+        </pre>
+    </div>
+</body>
+</html>

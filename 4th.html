@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquire API Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+
+        /* Border Image */
+        .border-img {
+            width: 100%;
+            max-width: 1000px;
+            height: auto; /* Fix: Maintain aspect ratio */
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 90%; /* Fix: Adjust width for responsiveness */
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: left;
+            position: absolute;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Table */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* API Response Box */
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Fix: Wrap long lines */
+            word-wrap: break-word;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            pre {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 5px;
+            }
+        }
+        .line-x
+            {
+                width: 100%;
+                height: 2px;
+                background-color: black;
+                text-align: center;
+            }
+        .container h1
+        {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <img src="border-logo.webp" alt="Border Logo" class="border-img">
+    <div class="container">
+
+        <h1>Inquire API</h1>
+        <div class="line-x"></div>
+
+        <h2>2. <a href="#">Inquire API (JazzCash)</a></h2>
+
+        <p><strong>URL:</strong> <a href="#">https://{BASE_URL}/epay/jazzcash/inquire</a></p>
+        <p><strong>Type:</strong> GET</p>
+        <p><strong>Header:</strong> Authorization > Bearer {TOKEN}</p>
+
+        <h3>Query Parameters: <em>(One of the parameters is required to fetch record)</em></h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Mandatory</th>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>transactionId</td>
+                        <td>No</td>
+                        <td>Long</td>
+                        <td>ePay transaction id</td>
+                    </tr>
+                    <tr>
+                        <td>merchantTransactionId</td>
+                        <td>No</td>
+                        <td>String</td>
+                        <td>Merchant’s system unique Id</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Response:</h3>
+        <pre>
+{
+    "result": {
+        "merchant": "EPay",
+        "serviceProvider": "JazzCash",
+        "vendor": "JazzCash",
+        "transactionId": 1234,
+        "merchantTransactionId": "Test-1234",
+        "consumerNo": "03123456789",
+        "status": 2,
+        "amount": 1.0000,
+        "currency": "PKR",
+        "createdOn": "2024-01-01T23:56:12.57",
+        "vendorResponseOn": "2024-01-01T23:56:17.7833333",
+        "payeeName": "epay user",
+        "payeeCNIC": "422013921013",
+        "payeeEmail": "epay_user@xyz.com",
+        "billReferenceNo": "Test-1234",
+        "errorMessage": null
+    },
+    "responseCode": "100",
+    "responseMessage": "Transaction found successfully",
+    "timeStamp": "2024-01-01T23:58:51.8192858+05:00"
+}
+        </pre>
+    </div>
+</body>
+</html>
